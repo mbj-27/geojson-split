@@ -81,13 +81,6 @@ if uploaded_file:
     gdf = gpd.read_file(uploaded_file)
     st.success("File uploaded. Ready to process.")
 
-    # Initial map preview
-    st.markdown("### 🌍 Original Geometry Preview")
-    geojson_dict = json.loads(gdf.to_json())
-    with st.expander("View Uploaded GeoJSON"):
-        original_map = plot_geojson(geojson_dict["features"], "Original", "gray")
-        st_folium(original_map, width="100%", height=500)
-
     if st.button("Split & Download"):
         progress = st.progress(0, text="Splitting polygons and correcting winding...")
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -133,3 +126,4 @@ if uploaded_file:
                 file_name=f"{base_name}_split_parts.zip",
                 mime="application/zip"
             )
+
