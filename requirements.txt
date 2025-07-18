@@ -2,3 +2,5 @@ streamlit
 geopandas
 shapely
 geojson-rewind
+folium
+streamlit-folium
